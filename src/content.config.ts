@@ -9,6 +9,7 @@ const projects = defineCollection({
     title: z.string(),
     summary: z.string(),
     sector: z.string(),
+    kind: z.enum(['commercial', 'domestic']).default('commercial'),
     year: z.number(),
     systems: z.array(z.string()).default([]),
     services: z.array(z.string()).default([]),

@@ -1,95 +1,262 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import { company } from '../config';
-import { services, systems, sectors } from '../data';
+import { company, cta, accreditations } from '../config';
+import { commercial, steps, domestic, sectors } from '../data';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => b.data.year - a.data.year)
-  .slice(0, 3);
+  .slice(0, 2);
+
+const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
 <Base
   title={company.name}
-  description="BMS controls engineering from Telford: control strategy, software, panel design, commissioning and support for M&E contractors."
+  description="Building management systems and HVAC controls for offices, schools, healthcare and industrial sites, plus home automation for larger homes. Based in Telford, Shropshire."
 >
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Building management system controls</p>
-      <h1>BMS software, panels and commissioning for M&amp;E contractors</h1>
-      <p class="lead">
-        DNA Engineering designs, programs and commissions building management systems.
-        Based in {company.location}, working with M&amp;E contractors and controls companies across the UK.
-      </p>
-      <p class="actions">
-        <a class="btn" href="/contact/">Discuss a project</a>
-        <a class="btn btn--ghost" href="/services/">What we do</a>
-      </p>
-    </div>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <p class="eyebrow">{company.name} · Building management systems</p>
+    <h1>Building controls that keep commercial sites efficient, compliant and running.</h1>
+    <p class="lead">We design, install, upgrade and maintain BMS and HVAC controls for offices, schools, healthcare and industrial sites.</p>
+    <p class="actions">
+      <a class="btn" href={cta.href}>{cta.label} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+      <a class="btn btn--ghost" href="#commercial">Our BMS services</a>
+    </p>
   </section>
 
-  <section class="section section--white">
+  <!-- SPLIT -->
+  <section class="split wrap">
+    <a class="panel panel--com" href="#commercial">
+      <div class="panel-top">
+        <span class="eyebrow">Commercial</span>
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18" /><path d="M14 9h6v12h-6M7 7h1M10 7h1M7 11h1M10 11h1M7 15h1M10 15h1M17 13h1M17 17h1" /></svg>
+      </div>
+      <div>
+        <h2>Building management systems, end to end</h2>
+        <p class="panel-text">From a single plant room to a multi-site estate: new installations, legacy upgrades and ongoing maintenance.</p>
+        <ul class="tags">
+          <li>BMS installation</li><li>HVAC controls</li><li>Upgrades &amp; migrations</li><li>Energy monitoring</li><li>Service contracts</li>
+        </ul>
+        <span class="btn panel-btn">Explore BMS services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+      </div>
+    </a>
+
+    <a class="panel panel--dom" href="#domestic">
+      <div class="panel-top">
+        <span class="eyebrow">Also from DnA · Domestic</span>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5" /></svg>
+      </div>
+      <div>
+        <h2>Automation for larger homes</h2>
+        <p class="panel-text">The same controls expertise, applied to lighting, heating, AV and security at home.</p>
+        <span class="panel-link">Explore home automation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+      </div>
+    </a>
+  </section>
+
+  <!-- TRUST STRIP (hidden until accreditations are added in config.ts) -->
+  {accreditations.length > 0 && (
+    <section class="trust">
+      <div class="wrap trust-row">
+        <span class="trust-label">Accreditations &amp; platforms</span>
+        <ul class="trust-logos">
+          {accreditations.map((a) => (
+            <li>{a.logo ? <img src={a.logo} alt={a.name} /> : a.name}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- COMMERCIAL -->
+  <section id="commercial" class="section section--white">
     <div class="wrap">
-      <h2>What we do</h2>
-      <div class="grid grid--4">
-        {services.map((s) => (
-          <article class="card">
-            <h3>{s.title}</h3>
-            <p>{s.summary}</p>
-            <a href={`/services/#${s.id}`}>More detail<span class="sr-only"> on {s.title.toLowerCase()}</span></a>
+      <div class="intro">
+        <div>
+          <p class="eyebrow">Commercial · Building management systems</p>
+          <h2>Controls that cut energy use and keep plant compliant.</h2>
+        </div>
+        <p class="intro-text">From new installations to keeping legacy systems alive, we look after the controls behind your HVAC, lighting and energy.</p>
+      </div>
+
+      <div class="grid grid--3 com-grid">
+        {commercial.map((s, i) => (
+          <article class="card com-card">
+            <span class="num">{pad(i)}</span>
+            <div><h3>{s.title}</h3><p>{s.summary}</p></div>
           </article>
         ))}
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="wrap grid grid--2">
-      <div>
-        <h2>Systems we work on</h2>
-        <ul class="tags">{systems.map((s) => <li>{s.name}</li>)}</ul>
-        <p style="margin-top:1em"><a href="/systems/">Platform details</a></p>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class={i === 0 ? 'first' : ''}>
+            <span class="num">{pad(i)}</span>
+            <h4>{s.title}</h4>
+            <p>{s.summary}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="legacy">
+        <div>
+          <h3>Inherited a system nobody can support?</h3>
+          <p>We'll survey it, tell you what's worth keeping and plan the upgrade in phases.</p>
+        </div>
+        <a class="btn btn--light" href={cta.href}>Book a BMS survey</a>
       </div>
-      <div>
-        <h2>Sectors</h2>
+
+      <div class="sectors">
+        <span>Sectors we work in</span>
         <ul class="tags">{sectors.map((s) => <li>{s}</li>)}</ul>
       </div>
     </div>
   </section>
 
-  {projects.length > 0 && (
-    <section class="section section--white">
-      <div class="wrap">
-        <h2>Recent projects</h2>
-        <div class="grid grid--3">
-          {projects.map((p) => (
-            <a class="card project" href={`/projects/${p.id}/`}>
-              <p class="eyebrow">{p.data.sector} · {p.data.year}</p>
-              <h3>{p.data.title}</h3>
-              <p>{p.data.summary}</p>
-            </a>
-          ))}
+  <!-- DOMESTIC -->
+  <section id="domestic" class="section domestic">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <p class="eyebrow">Domestic · Home automation</p>
+          <h2>One home. One system. No clutter on the walls.</h2>
         </div>
+        <p class="intro-text">For larger properties, new builds and major renovations, we integrate every system early, working alongside your architect, interior designer and contractor.</p>
+      </div>
+
+      <div class="dom-grid">
+        {domestic.map((d) => (
+          <div class="dom-cell">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={d.icon} /></svg>
+            <h3>{d.title}</h3>
+            <p>{d.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (hidden until a non-draft project exists) -->
+  {projects.length > 0 && (
+    <section id="projects" class="section wrap">
+      <div class="projects-head">
+        <h2>Recent projects</h2>
+        <a href="/projects/">View all projects →</a>
+      </div>
+      <div class="grid grid--3 projects">
+        {projects.map((p) => (
+          <a class={`project project--${p.data.kind}`} href={`/projects/${p.id}/`}>
+            <div class="project-img">{p.data.image && <img src={p.data.image} alt="" loading="lazy" />}</div>
+            <div>
+              <span class="eyebrow">{p.data.kind === 'domestic' ? 'Domestic' : 'Commercial'}</span>
+              <h3>{p.data.title}</h3>
+              <p>{[p.data.location, p.data.summary].filter(Boolean).join(' · ')}</p>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
   )}
 
-  <section class="section section--teal">
-    <div class="wrap cta">
+  <!-- CTA -->
+  <section class="wrap cta-wrap">
+    <div class="cta">
       <div>
-        <h2>Got a controls package to price?</h2>
-        <p>Send the drawings and spec and we'll come back with a price and programme.</p>
+        <h2>Tell us about your site.</h2>
+        <p>Reviewing your BMS, planning a fit-out or looking for a maintenance partner? Start with a no-obligation site survey.</p>
       </div>
-      <a class="btn" href="/contact/">Get in touch</a>
+      <p class="actions">
+        <a class="btn" href={cta.href}>{cta.label}</a>
+        <a class="btn btn--ghost" href="/contact/?type=domestic">Home automation enquiry</a>
+      </p>
     </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding: 72px 0 64px; background: linear-gradient(180deg, var(--white), var(--paper)); border-bottom: 4px solid var(--lime); }
-  .hero h1 { max-width: 20ch; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .project { text-decoration: none; color: inherit; }
-  .project:hover { border-color: var(--lime); }
-  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
-  .cta p { margin: 0; }
+  .hero { padding-top: 88px; padding-bottom: 48px; }
+  .hero h1 { max-width: 1000px; }
+  .hero .lead { margin-top: 28px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 36px 0 0; }
+
+  /* Commercial / domestic split */
+  .split { display: flex; flex-wrap: wrap; gap: 20px; padding-top: 24px; padding-bottom: 96px; }
+  .panel { min-width: 0; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 420px; border-radius: 18px; }
+  .panel:hover { opacity: 1; }
+  .panel--com { flex: 3 1 560px; padding: 44px; background: var(--com-panel); border: 1px solid rgba(95, 168, 156, 0.35); color: var(--text); }
+  .panel--dom { flex: 2 1 320px; padding: 36px; background: var(--dom-panel); border: 1px solid rgba(141, 193, 82, 0.22); }
+  .panel-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+  .panel--com .panel-top { color: var(--com); }
+  .panel--dom .panel-top, .panel--dom .eyebrow, .panel-link { color: var(--dom); }
+  .panel .eyebrow { margin: 0; }
+  .panel h2 { margin: 0; font-size: clamp(1.875rem, 3.2vw, 2.625rem); line-height: 1.1; max-width: 620px; }
+  .panel--dom h2 { font-size: 1.625rem; line-height: 1.15; }
+  .panel-text { margin: 16px 0 0; color: var(--text-soft); max-width: 560px; }
+  .panel .tags { margin-top: 24px; }
+  .panel-btn { margin-top: 28px; font-size: 0.9375rem; }
+  .panel-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-weight: 600; font-size: 0.9375rem; }
+  @media (max-width: 600px) { .panel--com, .panel--dom { padding: 28px; min-height: 0; } }
+
+  /* Accreditations */
+  .trust { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .trust-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; padding-top: 28px; padding-bottom: 28px; }
+  .trust-label { font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .trust-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; list-style: none; margin: 0; padding: 0; }
+  .trust-logos img { height: 40px; width: auto; }
+
+  /* Section intros */
+  .intro { display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-end; justify-content: space-between; }
+  .intro > div { max-width: 660px; }
+  .intro h2 { margin: 0; font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.08; }
+  .intro-text { margin: 0; max-width: 420px; font-size: 1.0625rem; }
+
+  /* Commercial */
+  .com-grid { margin-top: 64px; }
+  .com-card { display: flex; gap: 20px; align-items: flex-start; }
+  .com-card h3 { margin: 0 0 8px; font-size: 1.1875rem; }
+  .com-card p { font-size: 0.9375rem; }
+  .num { font-family: var(--font-head); font-size: 0.8125rem; font-weight: 600; color: var(--com-deep); padding-top: 4px; }
+  .steps { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+  .steps li { border-top: 2px solid #a9bab7; padding-top: 20px; }
+  .steps li.first { border-top-color: var(--com-deep); }
+  .steps h4 { margin: 8px 0; font-size: 1.125rem; }
+  .steps p { margin: 0; font-size: 0.9375rem; }
+  .legacy { margin-top: 56px; padding: 32px; border-radius: 14px; background: var(--com-deep); color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+  .legacy h3 { margin: 0; font-size: 1.375rem; }
+  .section--white .legacy p { margin: 8px 0 0; color: rgba(242, 241, 236, 0.8); font-size: 0.9375rem; }
+  .sectors { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .sectors > span { font-size: 0.875rem; color: var(--light-soft); }
+
+  /* Domestic */
+  .domestic { background: var(--dom-section); }
+  .domestic .eyebrow { color: var(--dom); }
+  .domestic .intro-text { color: rgba(242, 241, 236, 0.72); }
+  .dom-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: rgba(141, 193, 82, 0.18); border: 1px solid rgba(141, 193, 82, 0.18); border-radius: 14px; overflow: hidden; }
+  .dom-cell { background: var(--dom-section); padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+  .dom-cell svg { color: var(--dom); }
+  .dom-cell h3 { margin: 0; font-size: 1.25rem; }
+  .dom-cell p { margin: 0; font-size: 0.9375rem; color: rgba(242, 241, 236, 0.7); }
+
+  /* Projects */
+  .projects-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .projects-head h2 { margin: 0; }
+  .projects-head a { font-size: 0.9375rem; padding: 12px 0; }
+  .projects { margin-top: 40px; gap: 24px; }
+  .project { text-decoration: none; display: flex; flex-direction: column; gap: 18px; }
+  .project-img { height: 340px; border-radius: 14px; overflow: hidden; background: #1b2c2b; border: 1px solid rgba(95, 168, 156, 0.4); }
+  .project--domestic .project-img { background: #2a3123; border-color: rgba(141, 193, 82, 0.4); }
+  .project-img img { width: 100%; height: 100%; object-fit: cover; }
+  .project .eyebrow { margin: 0; font-size: 0.8125rem; letter-spacing: 0.14em; }
+  .project--domestic .eyebrow { color: var(--dom); }
+  .project h3 { margin: 8px 0 6px; font-size: 1.375rem; }
+  .project p { margin: 0; font-size: 0.9375rem; color: var(--text-faint); }
+
+  /* Closing CTA */
+  .cta-wrap { padding-top: 96px; padding-bottom: 112px; }
+  .cta { border-radius: 20px; border: 1px solid rgba(242, 241, 236, 0.14); background: var(--bg-raised); padding: clamp(28px, 5vw, 72px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+  .cta > div { max-width: 560px; }
+  .cta h2 { margin: 0; font-size: clamp(1.75rem, 3.4vw, 2.625rem); }
+  .cta p { margin: 14px 0 0; color: rgba(242, 241, 236, 0.72); }
+  .cta .actions { margin: 0; }
 </style>

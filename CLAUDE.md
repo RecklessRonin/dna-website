@@ -14,7 +14,8 @@ Company website for DNA Engineering Ltd (BMS controls engineering, Telford). Bui
 
 ## Writing rules
 
-- British English. Plain, specific and technical. The audience is M&E contractors and controls companies, not the general public.
+- British English. Plain, specific and technical. Two audiences: commercial building owners, facilities managers and M&E contractors (the main business), and owners of larger homes for domestic automation (secondary).
+- Brand: "DnA Engineering". Dark theme, teal (`--com`) for commercial, green (`--dom`) for domestic, Sora headings, Instrument Sans body. Tokens live in `src/styles/global.css`.
 - Name real systems, sectors and places. No generic marketing filler ("solutions", "seamless", "cutting-edge").
 - Never invent statistics, client names, project numbers or team size. If a fact isn't confirmed, mark it `TODO(Dan)`.
 - Name a client or main contractor only once Dan confirms permission.

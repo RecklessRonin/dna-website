@@ -2,7 +2,7 @@
 // Anything set to an empty string is hidden on the site rather than shown blank.
 
 export const company = {
-  name: 'DNA Engineering',
+  name: 'DnA Engineering', // brand styling, as in the logo
   legalName: 'DNA Engineering Ltd',
   // TODO(Dan): Companies House number and registered office. Legally required on the site.
   companyNumber: '',
@@ -19,10 +19,16 @@ export const company = {
 export const contactFormAction = '';
 
 export const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/services/', label: 'Services' },
+  { href: '/services/', label: 'Commercial BMS' },
+  { href: '/#domestic', label: 'Domestic' },
   { href: '/systems/', label: 'Systems' },
   { href: '/projects/', label: 'Projects' },
   { href: '/about/', label: 'About' },
-  { href: '/contact/', label: 'Contact' },
 ];
+
+// Header and footer call to action
+export const cta = { href: '/contact/', label: 'Request a site survey' };
+
+// Accreditation and platform-partner logos for the strip under the hero.
+// Empty = strip hidden. TODO(Dan): add names, plus logo files in public/images/.
+export const accreditations: { name: string; logo?: string }[] = [];
