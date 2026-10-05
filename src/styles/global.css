@@ -106,5 +106,12 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--com); outli
 .prose { max-width: 70ch; }
 .prose ul { padding-left: 1.2em; }
 .prose a { color: var(--com); }
+.prose h2 { margin-top: 1.6em; }
+.prose li { margin-bottom: 0.35em; }
+.prose strong { color: var(--text); }
+.prose table { width: 100%; border-collapse: collapse; margin: 1.2em 0 1.6em; font-size: 0.9375rem; display: block; overflow-x: auto; }
+.prose th, .prose td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.prose th { color: var(--text-faint); font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; background: var(--bg-raised); }
+.prose small { display: block; margin-top: 2em; color: var(--text-faint); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

@@ -126,22 +126,26 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" strok
 
   <!-- 6. PROJECTS (hidden until a non-draft project exists) -->
   {projects.length > 0 && (
-    <section id="projects" class="section wrap">
-      <div class="projects-head">
-        <h2>Recent projects</h2>
-        <a href="/projects/">View all projects →</a>
-      </div>
-      <div class="grid grid--3 projects">
-        {projects.map((p) => (
-          <a class={`project project--${p.data.kind}`} href={`/projects/${p.id}/`}>
-            <div class="project-img">{p.data.image && <img src={p.data.image} alt="" loading="lazy" />}</div>
-            <div>
-              <span class="eyebrow">{p.data.kind === 'domestic' ? 'Domestic' : 'Commercial'}</span>
-              <h3>{p.data.title}</h3>
-              <p>{[p.data.location, p.data.summary].filter(Boolean).join(' · ')}</p>
-            </div>
-          </a>
-        ))}
+    <section id="projects" class="section">
+      <div class="wrap">
+        <div class="projects-head">
+          <h2>Recent projects</h2>
+          <a href="/projects/">View all projects →</a>
+        </div>
+        <div class="grid grid--2 projects">
+          {projects.map((p) => (
+            <a class={`project project--${p.data.kind}`} href={`/projects/${p.id}/`}>
+              {p.data.image && <div class="project-img"><img src={p.data.image} alt="" loading="lazy" /></div>}
+              <div class="project-body">
+                <span class="eyebrow">{p.data.kind === 'domestic' ? 'Domestic' : 'Commercial'}{p.data.location ? ` · ${p.data.location}` : ''}</span>
+                <h3>{p.data.title}</h3>
+                <p>{p.data.summary}</p>
+                {[...p.data.systems].length > 0 && <ul class="tags">{p.data.systems.map((s) => <li>{s}</li>)}</ul>}
+                <span class="project-link">Read the case study <Fragment set:html={arrow} /></span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )}
@@ -229,16 +233,20 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" strok
   .projects-head h2 { margin: 0; }
   .projects-head a { font-size: 0.9375rem; padding: 12px 0; }
   .projects { margin-top: 40px; gap: 24px; }
-  .project { text-decoration: none; display: flex; flex-direction: column; gap: 18px; }
-  .project-img { height: 340px; border-radius: 14px; overflow: hidden; background: var(--com-panel); border: 1px solid var(--com-line); }
-  .project--domestic .project-img { background: var(--dom-panel); border-color: var(--dom-line); }
+  .project { text-decoration: none; display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: var(--bg-raised); border: 1px solid var(--rule-strong); }
+  .project:hover { border-color: var(--com-line); opacity: 1; }
+  .project-img { height: 260px; }
   .project-img img { width: 100%; height: 100%; object-fit: cover; }
+  .project-body { padding: 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .project .eyebrow { margin: 0; font-size: 0.8125rem; letter-spacing: 0.14em; }
-  .project h3 { margin: 8px 0 6px; font-size: 1.375rem; }
-  .project p { margin: 0; font-size: 0.9375rem; color: var(--text-faint); }
+  .project h3 { margin: 0; font-size: 1.375rem; }
+  .project p { margin: 0; font-size: 0.9375rem; color: var(--text-soft); }
+  .project .tags { margin-top: 6px; }
+  .project-link { margin-top: auto; padding-top: 8px; display: inline-flex; align-items: center; gap: 8px; color: var(--com); font-weight: 600; font-size: 0.9375rem; }
 
   /* Domestic teaser */
   #domestic { padding-top: 96px; }
+  #projects + #domestic { padding-top: 0; }
   .dom-teaser { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding: clamp(28px, 4vw, 44px); border-radius: 18px; background: var(--dom-panel); border: 1px solid var(--dom-line); text-decoration: none; }
   .dom-teaser:hover { opacity: 1; border-color: var(--com-line); }
   .dom-teaser > div { max-width: 720px; }
