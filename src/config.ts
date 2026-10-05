@@ -10,7 +10,7 @@ export const company = {
   location: 'Telford, Shropshire',
   // TODO(Dan): confirm the phone number to publish.
   phone: '',
-  email: 'enquiries@dna-engineering.co.uk', // TODO(Dan): confirm this mailbox exists
+  email: 'info@dna-engineering.co.uk',
   linkedin: '', // TODO(Dan): company LinkedIn URL, or leave empty to hide
 };
 

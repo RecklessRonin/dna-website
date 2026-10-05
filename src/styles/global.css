@@ -1,32 +1,38 @@
-/* Brand tokens from the homepage design (claude.ai design "Home Page — Domestic & Commercial") */
+/* Brand tokens, matched to the booking system (booking.dna-engineering.co.uk) */
 :root {
-  --bg: #202222;
-  --bg-raised: #282c2b;
-  --text: #f2f1ec;
-  --text-soft: rgba(242, 241, 236, 0.75);
-  --text-faint: rgba(242, 241, 236, 0.68);
-  --rule: rgba(242, 241, 236, 0.10);
+  color-scheme: dark;
+  --bg: #0f1420;
+  --bg-deep: #0b0f18;
+  --bg-raised: #161d2e;      /* surface */
+  --surface-alt: #1b2337;
+  --text: #e6e9ef;
+  --text-soft: #c3c9d9;
+  --text-faint: #8b93a7;
+  --rule: #232c42;
+  --rule-strong: #2a3350;
 
-  /* Commercial (teal) and domestic (green) accents */
-  --com: #5fa89c;
-  --com-deep: #1e4744;
-  --com-panel: #192826;
-  --dom: #8dc152;
-  --dom-panel: #232720;
-  --dom-section: #1c201a;
+  /* Green accent: --com for text and icons, --com-deep for solid buttons and banners */
+  --com: #8bc53f;
+  --com-hover: #a3d95c;
+  --com-deep: #4a7c28;
+  --com-deep-hover: #5c9330;
+  --com-panel: #1b2337;
+  --com-line: rgba(139, 197, 63, 0.35);
+  --teal: #1b6f64;
 
-  /* Light sections */
-  --light: #eef2ef;
-  --light-ink: #12191c;
-  --light-soft: #3e4b50;
-  --light-line: #d5dcdc;
+  /* Domestic uses the same green on the soft green surface */
+  --dom: #8bc53f;
+  --dom-panel: #1f2b18;
+  --dom-section: #0b0f18;
+  --dom-line: rgba(139, 197, 63, 0.22);
+
   --white: #ffffff;
-  --on-accent: #0b1418;
+  --on-accent: #ffffff;
 
   --radius: 12px;
   --max: 1240px;
-  --font: 'Instrument Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-head: 'Sora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font: 'Instrument Sans', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-head: 'Sora', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -52,22 +58,24 @@ p { margin: 0 0 1em; }
 @media (max-width: 600px) { .wrap { padding: 0 16px; } }
 
 .section { padding: 96px 0; }
-.section--white { background: var(--light); color: var(--light-ink); }
-.section--white .lead, .section--white p { color: var(--light-soft); }
-.section--teal { background: var(--com-deep); color: var(--text); }
+/* Raised band (was the light section in the original design) */
+.section--white { background: var(--bg-raised); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.section--white .lead, .section--white p { color: var(--text-soft); }
+.section--teal { background: var(--com-deep); color: var(--white); }
 .lead { font-size: 1.1875rem; line-height: 1.55; color: var(--text-soft); max-width: 640px; }
 .eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.8125rem; color: var(--com); margin: 0 0 1.2em; }
-.section--white .eyebrow { color: var(--com-deep); }
 
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 24px; border-radius: 999px;
-  background: var(--com); color: var(--on-accent); font-weight: 600; font-size: 1rem; text-decoration: none;
-  border: 1px solid var(--com);
+  background: var(--com-deep); color: var(--on-accent); font-weight: 600; font-size: 1rem; text-decoration: none;
+  border: 1px solid var(--com-deep);
 }
-.btn--ghost { background: transparent; color: inherit; border-color: rgba(242, 241, 236, 0.4); font-weight: 400; }
-.section--white .btn--ghost { border-color: var(--light-ink); }
-.btn--light { background: var(--text); color: var(--light-ink); border-color: var(--text); }
+.btn:hover { background: var(--com-deep-hover); border-color: var(--com-deep-hover); opacity: 1; }
+.btn--ghost { background: transparent; color: inherit; border-color: var(--rule-strong); font-weight: 400; }
+.btn--ghost:hover { background: var(--surface-alt); border-color: var(--rule-strong); }
+.btn--light { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn--light:hover { background: var(--white); border-color: var(--white); }
 
 .grid { display: grid; gap: 20px; }
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -78,18 +86,25 @@ p { margin: 0 0 1em; }
   background: var(--bg-raised); border: 1px solid var(--rule); border-radius: var(--radius);
   padding: 30px;
 }
-.section--white .card { background: var(--white); border-color: var(--light-line); }
+.section--white .card { background: var(--surface-alt); border-color: var(--rule-strong); }
 .card h3 { margin-top: 0; }
 .card p:last-child { margin-bottom: 0; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
-.tags li { padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(95, 168, 156, 0.4); font-size: 0.875rem; color: rgba(242, 241, 236, 0.85); }
-.section--white .tags li { border-color: #b9c4c5; color: var(--light-ink); }
+.tags li { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--com-line); font-size: 0.875rem; color: var(--text-soft); }
+
+/* Form fields, as on the booking system */
+input, select, textarea {
+  font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--rule-strong); border-radius: 6px; padding: 10px 12px;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--com); outline-offset: 1px; }
 
 /* Marks content that still needs real information. Remove the class when done. */
-.todo { outline: 2px dashed #d97706; outline-offset: 4px; }
+.todo { outline: 2px dashed #e0c96f; outline-offset: 4px; }
 
 .prose { max-width: 70ch; }
 .prose ul { padding-left: 1.2em; }
+.prose a { color: var(--com); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
