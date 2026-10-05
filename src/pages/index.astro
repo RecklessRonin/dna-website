@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { company, cta, accreditations } from '../config';
-import { commercial, steps, domestic, sectors } from '../data';
+import { commercial, steps, domestic, sectors, handover } from '../data';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => b.data.year - a.data.year)
@@ -12,13 +12,14 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
 <Base
   title={company.name}
-  description="Building management systems and HVAC controls for offices, schools, healthcare and industrial sites, plus home automation for larger homes. Based in Telford, Shropshire."
+  description="Your site. Your system. Your keys. BMS and HVAC controls for offices, schools, healthcare and industrial sites, with every login, file and licence handed over. Based in Telford, Shropshire."
 >
   <!-- HERO -->
   <section class="hero wrap">
     <p class="eyebrow">{company.name} · Building management systems</p>
-    <h1>Building controls that keep commercial sites efficient, compliant and running.</h1>
-    <p class="lead">We design, install, upgrade and maintain BMS and HVAC controls for offices, schools, healthcare and industrial sites.</p>
+    <h1>Your site. Your system. <span class="accent">Your keys.</span></h1>
+    <p class="tagline">We build it, you own it.</p>
+    <p class="lead">We design, install, upgrade and maintain BMS and HVAC controls for offices, schools, healthcare and industrial sites. At handover you get every login, file and licence, so you're never locked in.</p>
     <p class="actions">
       <a class="btn" href={cta.href}>{cta.label} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
       <a class="btn btn--ghost" href="#commercial">Our BMS services</a>
@@ -68,6 +69,28 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
       </div>
     </section>
   )}
+
+  <!-- HANDOVER PROMISE -->
+  <section id="handover" class="section handover">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <p class="eyebrow">What you get at handover</p>
+          <h2>We build it, you own it.</h2>
+        </div>
+        <p class="intro-text">Too many building owners can't change a time schedule without calling the company that installed their BMS. We hand everything over, so you're free to use any engineer, including us.</p>
+      </div>
+      <ul class="promises">
+        {handover.map((h) => (
+          <li>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={h.icon} /></svg>
+            <h3>{h.title}</h3>
+            <p>{h.summary}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
   <!-- COMMERCIAL -->
   <section id="commercial" class="section section--white">
@@ -177,7 +200,17 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 <style>
   .hero { padding-top: 88px; padding-bottom: 48px; }
   .hero h1 { max-width: 1000px; }
-  .hero .lead { margin-top: 28px; }
+  .hero h1 .accent { color: var(--com); white-space: nowrap; }
+  .tagline { margin: 20px 0 0; font-family: var(--font-head); font-weight: 500; font-size: clamp(1.375rem, 2.6vw, 1.875rem); color: var(--text-soft); }
+  .hero .lead { margin-top: 24px; }
+
+  /* Handover promise */
+  .handover { padding-top: 0; }
+  .promises { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 32px 28px; }
+  .promises li { border-top: 2px solid var(--com); padding-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .promises svg { color: var(--com); }
+  .promises h3 { margin: 4px 0 0; font-size: 1.125rem; }
+  .promises p { margin: 0; font-size: 0.9375rem; color: var(--text-soft); }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 36px 0 0; }
 
   /* Commercial / domestic split */

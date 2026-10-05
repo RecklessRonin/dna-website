@@ -67,6 +67,36 @@ export const commercial = [
   { title: 'Integration', summary: 'Bringing lighting, metering and third-party plant onto one open-protocol front end.' },
 ];
 
+// Handover promises behind "Your site. Your system. Your keys." Confirmed by Dan, 2026-10-06.
+// `icon` is SVG path data on a 24x24 grid.
+export const handover = [
+  {
+    title: 'Your credentials',
+    summary: "Every admin login is handed to you at handover. We don't keep the only set.",
+    icon: 'M4 15a4 4 0 1 0 8 0a4 4 0 1 0-8 0M11 12l9-9M17 6l3 3M14.5 8.5l2 2',
+  },
+  {
+    title: 'Your files',
+    summary: 'Controller programs, graphics, backups, points schedules and as-fitted drawings.',
+    icon: 'M4 4h6l2 2h8v14H4zM9 13h6M9 16h4',
+  },
+  {
+    title: 'Your licences',
+    summary: 'Software licences are registered to you, not to DnA.',
+    icon: 'M6 3h9l4 4v14H6zM14 3v5h5M9 13l2 2 4-4',
+  },
+  {
+    title: 'Your choice of engineer',
+    summary: 'Open protocols like BACnet and Modbus, so any competent engineer can work on your system.',
+    icon: 'M6 7a3 3 0 1 0 6 0a3 3 0 1 0-6 0M14.5 9.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 14.5c.8-.3 1.6-.5 2.5-.5 2.8 0 4 2 4 4.5',
+  },
+  {
+    title: 'Written for engineers',
+    summary: 'Plain technical documentation for the people who run the plant, not a sales brochure.',
+    icon: 'M4 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z',
+  },
+];
+
 // Home page: how a commercial job runs
 export const steps = [
   { title: 'Site survey', summary: 'We assess existing plant, controls and how the building is actually used.' },
