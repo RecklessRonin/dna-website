@@ -15,7 +15,7 @@ Company website for DNA Engineering Ltd (BMS controls engineering, Telford). Bui
 ## Writing rules
 
 - British English. Plain, specific and technical. Two audiences: commercial building owners, facilities managers and M&E contractors (the main business), and owners of larger homes for domestic automation (secondary).
-- Brand: "DnA Engineering". Colours match the booking system (booking.dna-engineering.co.uk): navy `#0f1420` background, green accent `#8bc53f`, solid buttons `#4a7c28` with white text. Full-colour stacked logo (`public/images/logo.png`). System font stack (Segoe UI on Windows), as on the booking system. Tokens live in `src/styles/global.css`.
+- Brand: "DnA Engineering". Colours match the booking system (booking.dna-engineering.co.uk): navy `#0f1420` background, green accent `#8bc53f`, solid buttons `#4a7c28` with white text. Full-colour stacked logo (`public/images/logo.png`). Sora headings, Instrument Sans body. Tokens live in `src/styles/global.css`.
 - Contact email is info@dna-engineering.co.uk.
 - Name real systems, sectors and places. No generic marketing filler ("solutions", "seamless", "cutting-edge").
 - Never invent statistics, client names, project numbers or team size. If a fact isn't confirmed, mark it `TODO(Dan)`.
