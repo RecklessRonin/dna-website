@@ -19,7 +19,7 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
     <div class="legacy">
       <div>
         <h2>Inherited a system nobody can support? <span class="accent">We can.</span></h2>
-        <p>We'll work out what you've got, keep what still works and upgrade the rest at a pace that suits you.</p>
+        <p>We'll take it on as it is, get it working and hand you the keys. Then we upgrade only what needs it.</p>
       </div>
       <a class="btn btn--light" href={cta.href}>Book a BMS survey</a>
     </div>
@@ -258,10 +258,12 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
   .steps li.first { border-top-color: var(--com); }
   .steps h4 { margin: 8px 0; font-size: 1.125rem; }
   .steps p { margin: 0; font-size: 0.9375rem; }
-  .legacy { margin-top: 32px; padding: 28px 32px; border-radius: 14px; background: var(--com-deep); color: var(--white); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+  .legacy { margin-top: 32px; padding: 28px 32px; border-radius: 14px; background: var(--bg-raised); border: 1px solid var(--rule-strong); border-left: 4px solid var(--com); color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
   .legacy h2 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.25; }
-  .legacy h2 .accent { color: #d6f0b4; white-space: nowrap; }
-  .legacy p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.88); font-size: 0.9375rem; }
+  .legacy h2 .accent { color: var(--com); white-space: nowrap; }
+  .legacy p { margin: 8px 0 0; color: var(--text-soft); font-size: 0.9375rem; }
+  .legacy .btn--light { background: var(--com-deep); border-color: var(--com-deep); color: var(--white); }
+  .legacy .btn--light:hover { background: var(--com-deep-hover); border-color: var(--com-deep-hover); }
   .sectors { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
   .sectors > span { font-size: 0.875rem; color: var(--text-faint); }
 
