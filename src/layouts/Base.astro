@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
       <div class="wrap bar">
         <a href="/" class="brand" aria-label={`${company.name} home`}>
           <img src="/images/logo-icon.png" alt="" width="402" height="367" />
-          <span class="wordmark"><span class="wm-dna">DnA</span><span class="wm-eng">Engineering</span></span>
+          <img class="wordmark" src="/images/logo-wordmark-light.png" alt="" width="883" height="349" />
         </a>
         <details class="menu">
           <summary aria-label="Menu">Menu</summary>
@@ -61,7 +61,7 @@ const year = new Date().getFullYear();
         <div class="footer-brand">
           <span class="brand brand--footer">
             <img src="/images/logo-icon.png" alt="" width="402" height="367" />
-            <span class="wordmark"><span class="wm-dna">DnA</span><span class="wm-eng">Engineering</span></span>
+            <img class="wordmark" src="/images/logo-wordmark-light.png" alt={company.name} width="883" height="349" />
           </span>
           <span>
             {company.legalName}. Registered in England and Wales{company.companyNumber ? `, company number ${company.companyNumber}` : ''}.
@@ -98,11 +98,9 @@ const year = new Date().getFullYear();
   .bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; padding-top: 10px; padding-bottom: 10px; }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
   .brand img { height: 48px; width: auto; }
-  .wordmark { display: flex; flex-direction: column; line-height: 1; }
-  .wm-dna { font-family: var(--font-head); font-weight: 700; font-size: 1.75rem; letter-spacing: -0.02em; }
-  .wm-eng { margin-top: 4px; font-size: 0.6875rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--text-faint); }
+  .brand .wordmark { height: 36px; }
   .brand--footer img { height: 72px; }
-  .brand--footer .wm-dna { font-size: 2.25rem; }
+  .brand--footer .wordmark { height: 52px; }
 
   .menu summary { list-style: none; cursor: pointer; padding: 10px 18px; border: 1px solid rgba(242, 241, 236, 0.4); border-radius: 999px; }
   .menu summary::-webkit-details-marker { display: none; }
