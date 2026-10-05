@@ -1,30 +1,98 @@
 ---
 import Base from '../layouts/Base.astro';
-import { services } from '../data';
+import { cta } from '../config';
+import { commercial, steps, handover } from '../data';
+
+const pad = (n: number) => String(n + 1).padStart(2, '0');
 ---
-<Base title="Services" description="BMS control strategy and software, control panel design, commissioning and testing, and maintenance and support.">
-  <section class="section">
+<Base title="Commercial BMS services" description="BMS design and installation, HVAC controls, commissioning, upgrades, energy monitoring, maintenance and integration. Every login, file and licence handed over.">
+  <section class="section page-head">
     <div class="wrap">
-      <p class="eyebrow">Services</p>
-      <h1>What we do</h1>
-      <p class="lead">We can take a controls package from strategy to handover, or cover the parts you need.</p>
+      <p class="eyebrow">Commercial BMS</p>
+      <h1>BMS services</h1>
+      <p class="lead">Full packages from survey to handover, or just the parts you need. Whichever it is, you get every login, file and licence at the end.</p>
+      <ul class="jump">
+        {commercial.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+      </ul>
     </div>
   </section>
 
-  {services.map((s, i) => (
-    <section id={s.id} class={`section ${i % 2 === 0 ? 'section--white' : ''}`}>
-      <div class="wrap prose">
-        <h2>{s.title}</h2>
-        <p>{s.summary}</p>
-        <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
-      </div>
-    </section>
-  ))}
+  <section class="section section--white">
+    <div class="wrap services">
+      {commercial.map((s, i) => (
+        <article id={s.id} class="service">
+          <span class="num">{pad(i)}</span>
+          <div>
+            <h2>{s.title}</h2>
+            <p>{s.summary}</p>
+            {s.points.length > 0 && <ul>{s.points.map((p) => <li>{p}</li>)}</ul>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
 
-  <section class="section section--teal">
+  <section class="section">
     <div class="wrap">
-      <h2>Need part of a package covered?</h2>
-      <p><a class="btn" href="/contact/">Get in touch</a></p>
+      <h2>How a job runs</h2>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class={i === 0 ? 'first' : ''}>
+            <span class="num">{pad(i)}</span>
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <h2>What you get at handover</h2>
+      <ul class="handover">
+        {handover.map((h) => <li><strong>{h.title}.</strong> {h.summary}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap closing">
+      <div>
+        <h2>Need a whole package, or just part of one?</h2>
+        <p>Send the drawings and spec, or tell us about the site, and we'll come back with a price and programme.</p>
+      </div>
+      <a class="btn" href={cta.href}>{cta.label}</a>
     </div>
   </section>
 </Base>
+
+<style>
+  .page-head { padding-bottom: 64px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 32px 0 0; padding: 0; }
+  .jump a { display: block; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--com-line); font-size: 0.875rem; color: var(--text-soft); text-decoration: none; }
+  .jump a:hover { color: var(--text); border-color: var(--com); opacity: 1; }
+
+  .services { display: grid; gap: 0; }
+  .service { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 40px 0; border-top: 1px solid var(--rule-strong); scroll-margin-top: 110px; }
+  .service:first-child { border-top: 0; padding-top: 0; }
+  .service h2 { font-size: clamp(1.375rem, 2.4vw, 1.75rem); margin-bottom: 10px; }
+  .service p { max-width: 62ch; }
+  .service ul { margin: 0; padding-left: 1.2em; color: var(--text-soft); max-width: 62ch; }
+  .service li { margin-bottom: 4px; }
+  .num { font-family: var(--font-head); font-size: 0.875rem; font-weight: 600; color: var(--com); padding-top: 8px; }
+
+  .steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+  .steps li { border-top: 2px solid var(--rule-strong); padding-top: 20px; }
+  .steps li.first { border-top-color: var(--com); }
+  .steps h3 { margin: 8px 0; font-size: 1.125rem; }
+  .steps p { margin: 0; font-size: 0.9375rem; color: var(--text-soft); }
+
+  .handover { margin: 24px 0 0; padding-left: 1.2em; max-width: 70ch; color: var(--text-soft); }
+  .handover li { margin-bottom: 8px; }
+  .handover strong { color: var(--text); }
+
+  .closing { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .closing h2 { margin-bottom: 8px; }
+  .closing p { margin: 0; color: var(--text-soft); }
+</style>

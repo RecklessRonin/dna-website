@@ -4,9 +4,8 @@
 export const company = {
   name: 'DnA Engineering', // brand styling, as in the logo
   legalName: 'DNA Engineering Ltd',
-  // TODO(Dan): Companies House number and registered office. Legally required on the site.
-  companyNumber: '',
-  registeredOffice: '',
+  companyNumber: '17159472',
+  registeredOffice: '28 City Road, London, EC1V 2NX, United Kingdom',
   location: 'Telford, Shropshire',
   // TODO(Dan): confirm the phone number to publish.
   phone: '',
@@ -20,7 +19,7 @@ export const contactFormAction = '';
 
 export const nav = [
   { href: '/services/', label: 'Commercial BMS' },
-  { href: '/#domestic', label: 'Domestic' },
+  { href: '/domestic/', label: 'Domestic' },
   { href: '/systems/', label: 'Systems' },
   { href: '/projects/', label: 'Projects' },
   { href: '/about/', label: 'About' },
@@ -30,7 +29,8 @@ export const nav = [
 export const staffLogin = 'https://booking.dna-engineering.co.uk/login';
 
 // Header and footer call to action
-export const cta = { href: '/contact/', label: 'Request a site survey' };
+// One name for this button everywhere on the site.
+export const cta = { href: '/contact/', label: 'Book a site survey' };
 
 // Accreditation and platform-partner logos for the strip under the hero.
 // Empty = strip hidden. TODO(Dan): add names, plus logo files in public/images/.

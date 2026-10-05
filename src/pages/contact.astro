@@ -2,22 +2,26 @@
 import Base from '../layouts/Base.astro';
 import { company, contactFormAction } from '../config';
 ---
-<Base title="Contact" description="Contact DNA Engineering about BMS controls work.">
+<Base title="Contact" description={`Contact ${company.name} to book a site survey or discuss BMS controls or home automation.`}>
   <section class="section">
     <div class="wrap grid grid--2">
       <div>
-        <p class="eyebrow">Contact</p>
-        <h1>Talk to us about a project</h1>
-        <p class="lead">Send drawings, a spec or just a quick description and we'll get back to you.</p>
+        <p class="eyebrow" data-commercial>Book a site survey</p>
+        <p class="eyebrow" data-domestic hidden>Home automation enquiry</p>
+        <h1 data-commercial>Tell us about your site</h1>
+        <h1 data-domestic hidden>Tell us about your home</h1>
+        <p class="lead" data-commercial>Send drawings, a spec or just a quick description of the building and what's there now. We'll get back to you to arrange a survey.</p>
+        <p class="lead" data-domestic hidden>Tell us about the property, where the project is up to and who else is involved. We'll get back to you to talk it through.</p>
         <dl class="details">
           {company.phone && <><dt>Phone</dt><dd><a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a></dd></>}
-          {company.email && <><dt>Email</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></>}
+          {company.email && <><dt>Email</dt><dd><a class="mail" href={`mailto:${company.email}`}>{company.email}</a></dd></>}
           <dt>Based in</dt><dd>{company.location}</dd>
         </dl>
       </div>
 
       {contactFormAction && (
         <form class="card form" method="post" action={contactFormAction}>
+          <input type="hidden" name="enquiry" value="commercial" />
           <label>Name<input name="name" required autocomplete="name" /></label>
           <label>Company<input name="company" autocomplete="organization" /></label>
           <label>Email<input type="email" name="email" required autocomplete="email" /></label>
@@ -33,10 +37,24 @@ import { company, contactFormAction } from '../config';
 
 <style>
   .details { display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; margin-top: 24px; }
-  .details dt { font-weight: 700; color: var(--teal-dark); }
+  .details dt { font-weight: 600; color: var(--text-faint); }
   .details dd { margin: 0; }
+  .details a { color: var(--com); }
   .form label { display: block; font-weight: 600; margin-bottom: 14px; }
-  .form input, .form textarea { display: block; width: 100%; margin-top: 4px; padding: 10px; font: inherit; border: 1px solid var(--line); border-radius: var(--radius); }
+  .form input, .form textarea { display: block; width: 100%; margin-top: 4px; }
   .form button { cursor: pointer; font: inherit; font-weight: 600; }
-  .small { font-size: 0.9rem; color: var(--ink-soft); }
+  .small { font-size: 0.9rem; color: var(--text-faint); }
+  .small a { color: var(--com); }
 </style>
+
+<script>
+  // /contact/?type=domestic switches the wording (and the hidden form field) to a home automation enquiry.
+  if (new URLSearchParams(location.search).get('type') === 'domestic') {
+    document.querySelectorAll<HTMLElement>('[data-commercial]').forEach((el) => (el.hidden = true));
+    document.querySelectorAll<HTMLElement>('[data-domestic]').forEach((el) => (el.hidden = false));
+    const field = document.querySelector<HTMLInputElement>('input[name="enquiry"]');
+    if (field) field.value = 'domestic';
+    const mail = document.querySelector<HTMLAnchorElement>('a.mail');
+    if (mail) mail.href += '?subject=Home%20automation%20enquiry';
+  }
+</script>

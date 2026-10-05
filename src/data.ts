@@ -1,49 +1,5 @@
 // Services, systems and sectors. Used on the home page and their own pages.
 
-export const services = [
-  {
-    id: 'software',
-    title: 'Control strategy and software',
-    summary: 'Control strategies and controller software written to the M&E design, with graphics that operators can use.',
-    points: [
-      'Control strategy and sequence of operations from the M&E design',
-      'Controller programming and point schedules',
-      'Front-end graphics and alarm set-up',
-      // TODO(Dan): add or remove anything here
-    ],
-  },
-  {
-    id: 'panels',
-    title: 'Control panel design',
-    summary: 'Panel drawings and wiring diagrams that a panel builder can build from and an electrician can wire from.',
-    points: [
-      'Panel general arrangement and wiring diagrams',
-      'Field wiring and cable schedules',
-      'As-fitted drawings at handover',
-    ],
-  },
-  {
-    id: 'commissioning',
-    title: 'Commissioning and testing',
-    summary: 'Point-to-point testing, functional testing and handover documentation, carried out on site by the engineer who knows the software.',
-    points: [
-      'Point-to-point and functional testing',
-      'Witness testing with the M&E contractor and client',
-      'O&M information and handover documents',
-    ],
-  },
-  {
-    id: 'support',
-    title: 'Maintenance and support',
-    summary: 'Planned maintenance, fault finding and changes to existing systems, on site or remotely.',
-    points: [
-      'Planned maintenance visits',
-      'Fault finding and call-outs',
-      'Upgrades and changes to existing BMS installations',
-    ],
-  },
-];
-
 // TODO(Dan): confirm which of these you're happy to list publicly.
 export const systems = [
   { name: 'Trend', note: 'IQ controllers and front ends' },
@@ -57,14 +13,69 @@ export const systems = [
 // Sectors, from the homepage design
 export const sectors = ['Offices', 'Education', 'Healthcare', 'Retail & leisure', 'Industrial', 'Public sector'];
 
-// Home page: commercial BMS services
+// Commercial BMS services: summary on the home page, summary + points on /services/.
+// TODO(Dan): check the points; add or remove anything.
 export const commercial = [
-  { title: 'BMS design & installation', summary: 'Control panels, outstations, field devices and head-end software for new builds and fit-outs.' },
-  { title: 'HVAC controls', summary: "Boilers, chillers, AHUs and VRF systems tuned to run only when and where they're needed." },
-  { title: 'Upgrades & migrations', summary: 'Replacing obsolete controllers and graphics without stripping out working infrastructure.' },
-  { title: 'Energy metering & monitoring', summary: "Sub-metering and dashboards that show where energy is going and what's changed." },
-  { title: 'Service & maintenance', summary: 'Planned maintenance contracts, reactive call-outs and remote alarm handling.' },
-  { title: 'Integration', summary: 'Bringing lighting, metering and third-party plant onto one open-protocol front end.' },
+  {
+    id: 'design-install',
+    title: 'BMS design & installation',
+    summary: 'Control panels, outstations, field devices and head-end software for new builds and fit-outs.',
+    points: [
+      'Control strategy and sequence of operations from the M&E design',
+      'Panel general arrangement and wiring diagrams',
+      'Field wiring and cable schedules',
+      'Controller programming and points schedules',
+      'Front-end graphics and alarm set-up',
+    ],
+  },
+  {
+    id: 'hvac',
+    title: 'HVAC controls',
+    summary: "Boilers, chillers, AHUs and VRF systems tuned to run only when and where they're needed.",
+    points: [],
+  },
+  {
+    id: 'commissioning',
+    title: 'Commissioning & handover',
+    summary: 'Testing and handover carried out on site by the engineer who wrote the software.',
+    points: [
+      'Point-to-point and functional testing',
+      'Witness testing with the M&E contractor and client',
+      'O&M information, as-fitted drawings and every login, file and licence handed over',
+    ],
+  },
+  {
+    id: 'upgrades',
+    title: 'Upgrades & migrations',
+    summary: 'Replacing obsolete controllers and graphics without stripping out working infrastructure.',
+    points: [
+      'Surveys of existing and inherited systems',
+      'Phased replacement of obsolete controllers and front ends',
+      'Changes and additions to existing BMS installations',
+    ],
+  },
+  {
+    id: 'energy',
+    title: 'Energy metering & monitoring',
+    summary: "Sub-metering and dashboards that show where energy is going and what's changed.",
+    points: [],
+  },
+  {
+    id: 'maintenance',
+    title: 'Service & maintenance',
+    summary: 'Planned maintenance contracts, reactive call-outs and remote alarm handling.',
+    points: [
+      'Planned maintenance visits',
+      'Fault finding and call-outs',
+      'Remote monitoring and alarm handling',
+    ],
+  },
+  {
+    id: 'integration',
+    title: 'Integration',
+    summary: 'Bringing lighting, metering and third-party plant onto one open-protocol front end.',
+    points: [],
+  },
 ];
 
 // Handover promises behind "Your site. Your system. Your keys." Confirmed by Dan, 2026-10-06.
