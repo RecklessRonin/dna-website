@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.year - a.data.year);
+---
+<Base title="Projects" description="BMS controls projects delivered by DNA Engineering.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Projects</p>
+      <h1>Recent work</h1>
+      {projects.length === 0 ? (
+        <p class="lead">Case studies coming soon.</p>
+      ) : (
+        <div class="grid grid--3">
+          {projects.map((p) => (
+            <a class="card project" href={`/projects/${p.id}/`}>
+              <p class="eyebrow">{p.data.sector} · {p.data.year}</p>
+              <h2 class="h3">{p.data.title}</h2>
+              <p>{p.data.summary}</p>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .project { text-decoration: none; color: inherit; }
+  .project:hover { border-color: var(--lime); }
+  .h3 { font-size: 1.2rem; }
+</style>

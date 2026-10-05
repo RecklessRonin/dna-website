@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { systems } from '../data';
+---
+<Base title="Systems" description="BMS platforms we program and commission, including Trend, Tridium Niagara, Distech, Schneider, EasyIO and Synapsys.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Systems</p>
+      <h1>Platforms we work on</h1>
+      <p class="lead">We program, commission and support these BMS platforms. If yours isn't listed, ask.</p>
+    </div>
+  </section>
+  <section class="section section--white">
+    <div class="wrap grid grid--3">
+      {systems.map((s) => (
+        <div class="card">
+          <h3>{s.name}</h3>
+          {s.note && <p>{s.note}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

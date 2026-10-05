@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { company } from '../config';
+---
+<Base title="About" description="DNA Engineering is a BMS controls engineering company based in Telford, Shropshire.">
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">About</p>
+      <h1>About DNA Engineering</h1>
+
+      <div class="todo">
+        <p>
+          <!-- TODO(Dan): rewrite in your own words. Keep it honest and specific. -->
+          DNA Engineering is a BMS controls company based in {company.location}. The engineer who
+          writes the software is the one on site commissioning it, so nothing is lost between design and handover.
+        </p>
+        <p>
+          [Your background: years in controls, the platforms you've worked on, the kinds of
+          buildings, and why you set up DNA Engineering.]
+        </p>
+      </div>
+
+      <h2>How we work</h2>
+      <ul>
+        <li>One point of contact from strategy through to handover</li>
+        <li>Clear documentation: strategies, point schedules, drawings and O&amp;M information</li>
+        <li>Flexible: full packages or individual parts for M&amp;E and controls contractors</li>
+      </ul>
+
+      <!-- TODO(Dan): accreditations, insurance, CSCS/ECS cards, H&S schemes (e.g. CHAS, SafeContractor) if held -->
+    </div>
+  </section>
+</Base>

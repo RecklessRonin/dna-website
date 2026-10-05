@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+import { company, nav } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title === company.name ? `${company.name} | BMS Controls Engineering` : `${title} | ${company.name}`;
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, '')));
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <!-- TODO(Dan): replace the text wordmark with the real logo file at /public/images/logo.svg -->
+        <a href="/" class="brand" aria-label={`${company.name} home`}>
+          <span class="brand-mark">DNA</span><span class="brand-word">Engineering</span>
+        </a>
+        <details class="menu">
+          <summary aria-label="Menu">Menu</summary>
+          <nav aria-label="Main">
+            <ul>
+              {nav.map((item) => (
+                <li><a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-brand">{company.legalName}</p>
+          <p>Building management system controls: software, panel design, commissioning and support.</p>
+        </div>
+        <div>
+          <p><strong>Contact</strong></p>
+          {company.phone && <p><a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a></p>}
+          {company.email && <p><a href={`mailto:${company.email}`}>{company.email}</a></p>}
+          {company.linkedin && <p><a href={company.linkedin} rel="noopener">LinkedIn</a></p>}
+        </div>
+        <div>
+          <p><strong>Company</strong></p>
+          <p>
+            {company.legalName}. Registered in England and Wales
+            {company.companyNumber ? `, company number ${company.companyNumber}` : ''}.
+            {company.registeredOffice && <><br />Registered office: {company.registeredOffice}</>}
+          </p>
+          <p><a href="/privacy/">Privacy notice</a></p>
+        </div>
+      </div>
+      <div class="wrap copyright">© {year} {company.legalName}</div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  .bar { display: flex; align-items: center; justify-content: space-between; min-height: 68px; }
+  .brand { text-decoration: none; display: flex; align-items: baseline; gap: 8px; }
+  .brand-mark { font-weight: 800; font-size: 1.6rem; color: var(--teal); letter-spacing: -0.03em; }
+  .brand-word { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); }
+
+  .menu summary { list-style: none; cursor: pointer; padding: 8px 14px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 600; }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu nav { position: absolute; right: 20px; top: 64px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; min-width: 200px; }
+  .menu ul { list-style: none; margin: 0; padding: 0; }
+  .menu a { display: block; padding: 10px 12px; text-decoration: none; color: var(--ink); border-radius: 4px; }
+  .menu a:hover { background: var(--paper); }
+  .menu a[aria-current='page'] { color: var(--teal); font-weight: 700; }
+
+  @media (min-width: 860px) {
+    .menu summary { display: none; }
+    .menu nav { position: static; display: block; border: 0; padding: 0; background: none; }
+    .menu ul { display: flex; gap: 4px; }
+    .menu a[aria-current='page'] { box-shadow: inset 0 -3px 0 var(--lime); border-radius: 0; }
+  }
+
+  .site-footer { background: var(--teal-dark); color: #cfdad3; padding: 48px 0 24px; font-size: 0.95rem; }
+  .site-footer a { color: var(--white); }
+  .site-footer strong, .footer-brand { color: var(--white); font-weight: 700; }
+  .footer-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .copyright { margin-top: 32px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.85rem; }
+</style>
+
+<script>
+  // Desktop: keep the nav open; mobile: collapsible.
+  const menu = document.querySelector<HTMLDetailsElement>('.menu');
+  const mq = window.matchMedia('(min-width: 860px)');
+  const sync = () => { if (menu) menu.open = mq.matches; };
+  sync();
+  mq.addEventListener('change', sync);
+</script>

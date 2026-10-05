@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { company } from '../config';
+import { services, systems, sectors } from '../data';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.year - a.data.year)
+  .slice(0, 3);
+---
+<Base
+  title={company.name}
+  description="BMS controls engineering from Telford: control strategy, software, panel design, commissioning and support for M&E contractors."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Building management system controls</p>
+      <h1>BMS software, panels and commissioning for M&amp;E contractors</h1>
+      <p class="lead">
+        DNA Engineering designs, programs and commissions building management systems.
+        Based in {company.location}, working with M&amp;E contractors and controls companies across the UK.
+      </p>
+      <p class="actions">
+        <a class="btn" href="/contact/">Discuss a project</a>
+        <a class="btn btn--ghost" href="/services/">What we do</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <h2>What we do</h2>
+      <div class="grid grid--4">
+        {services.map((s) => (
+          <article class="card">
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+            <a href={`/services/#${s.id}`}>More detail<span class="sr-only"> on {s.title.toLowerCase()}</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid grid--2">
+      <div>
+        <h2>Systems we work on</h2>
+        <ul class="tags">{systems.map((s) => <li>{s.name}</li>)}</ul>
+        <p style="margin-top:1em"><a href="/systems/">Platform details</a></p>
+      </div>
+      <div>
+        <h2>Sectors</h2>
+        <ul class="tags">{sectors.map((s) => <li>{s}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  {projects.length > 0 && (
+    <section class="section section--white">
+      <div class="wrap">
+        <h2>Recent projects</h2>
+        <div class="grid grid--3">
+          {projects.map((p) => (
+            <a class="card project" href={`/projects/${p.id}/`}>
+              <p class="eyebrow">{p.data.sector} · {p.data.year}</p>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--teal">
+    <div class="wrap cta">
+      <div>
+        <h2>Got a controls package to price?</h2>
+        <p>Send the drawings and spec and we'll come back with a price and programme.</p>
+      </div>
+      <a class="btn" href="/contact/">Get in touch</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 64px; background: linear-gradient(180deg, var(--white), var(--paper)); border-bottom: 4px solid var(--lime); }
+  .hero h1 { max-width: 20ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .project { text-decoration: none; color: inherit; }
+  .project:hover { border-color: var(--lime); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta p { margin: 0; }
+</style>

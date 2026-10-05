@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { company, contactFormAction } from '../config';
+---
+<Base title="Contact" description="Contact DNA Engineering about BMS controls work.">
+  <section class="section">
+    <div class="wrap grid grid--2">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Talk to us about a project</h1>
+        <p class="lead">Send drawings, a spec or just a quick description and we'll get back to you.</p>
+        <dl class="details">
+          {company.phone && <><dt>Phone</dt><dd><a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a></dd></>}
+          {company.email && <><dt>Email</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></>}
+          <dt>Based in</dt><dd>{company.location}</dd>
+        </dl>
+      </div>
+
+      {contactFormAction && (
+        <form class="card form" method="post" action={contactFormAction}>
+          <label>Name<input name="name" required autocomplete="name" /></label>
+          <label>Company<input name="company" autocomplete="organization" /></label>
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" /></label>
+          <label>Message<textarea name="message" rows="6" required></textarea></label>
+          <p class="small">We use these details only to reply to you. See our <a href="/privacy/">privacy notice</a>.</p>
+          <button class="btn" type="submit">Send</button>
+        </form>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .details { display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; margin-top: 24px; }
+  .details dt { font-weight: 700; color: var(--teal-dark); }
+  .details dd { margin: 0; }
+  .form label { display: block; font-weight: 600; margin-bottom: 14px; }
+  .form input, .form textarea { display: block; width: 100%; margin-top: 4px; padding: 10px; font: inherit; border: 1px solid var(--line); border-radius: var(--radius); }
+  .form button { cursor: pointer; font: inherit; font-weight: 600; }
+  .small { font-size: 0.9rem; color: var(--ink-soft); }
+</style>

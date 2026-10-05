@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { services } from '../data';
+---
+<Base title="Services" description="BMS control strategy and software, control panel design, commissioning and testing, and maintenance and support.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h1>What we do</h1>
+      <p class="lead">We can take a controls package from strategy to handover, or cover the parts you need.</p>
+    </div>
+  </section>
+
+  {services.map((s, i) => (
+    <section id={s.id} class={`section ${i % 2 === 0 ? 'section--white' : ''}`}>
+      <div class="wrap prose">
+        <h2>{s.title}</h2>
+        <p>{s.summary}</p>
+        <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--teal">
+    <div class="wrap">
+      <h2>Need part of a package covered?</h2>
+      <p><a class="btn" href="/contact/">Get in touch</a></p>
+    </div>
+  </section>
+</Base>

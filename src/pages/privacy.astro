@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { company } from '../config';
+---
+<Base title="Privacy notice" description="How DNA Engineering handles personal information.">
+  <section class="section">
+    <div class="wrap prose">
+      <h1>Privacy notice</h1>
+      <!-- TODO(Dan): check this fits how you actually handle data. Get it reviewed if unsure. -->
+      <p>{company.legalName} is the data controller for personal information collected through this website.</p>
+      <h2>What we collect</h2>
+      <p>If you contact us, we keep your name, company, contact details and message so we can reply and, if you go ahead, carry out the work.</p>
+      <h2>How long we keep it</h2>
+      <p>Enquiries that don't lead to work are deleted within 12 months. Records relating to contracts are kept as long as the law requires.</p>
+      <h2>Cookies</h2>
+      <p>This site doesn't use tracking or advertising cookies.</p>
+      <h2>Your rights</h2>
+      <p>You can ask to see, correct or delete the information we hold about you{company.email ? <> by emailing <a href={`mailto:${company.email}`}>{company.email}</a></> : ''}. You can also complain to the Information Commissioner's Office at ico.org.uk.</p>
+    </div>
+  </section>
+</Base>
