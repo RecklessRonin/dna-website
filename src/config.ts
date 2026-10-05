@@ -26,6 +26,9 @@ export const nav = [
   { href: '/about/', label: 'About' },
 ];
 
+// Engineers' availability calendar (staff only), linked from the footer
+export const staffLogin = 'https://booking.dna-engineering.co.uk/login';
+
 // Header and footer call to action
 export const cta = { href: '/contact/', label: 'Request a site survey' };
 
