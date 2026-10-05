@@ -35,8 +35,8 @@ const year = new Date().getFullYear();
     <header class="site-header">
       <div class="wrap bar">
         <a href="/" class="brand" aria-label={`${company.name} home`}>
-          <img src="/images/logo-icon.png" alt="" width="402" height="367" />
           <img class="wordmark" src="/images/logo-wordmark-light.png" alt="" width="883" height="349" />
+          <img src="/images/logo-icon.png" alt="" width="402" height="367" />
         </a>
         <details class="menu">
           <summary aria-label="Menu">Menu</summary>
@@ -60,8 +60,8 @@ const year = new Date().getFullYear();
       <div class="wrap footer-grid">
         <div class="footer-brand">
           <span class="brand brand--footer">
-            <img src="/images/logo-icon.png" alt="" width="402" height="367" />
             <img class="wordmark" src="/images/logo-wordmark-light.png" alt={company.name} width="883" height="349" />
+            <img src="/images/logo-icon.png" alt="" width="402" height="367" />
           </span>
           <span>
             {company.legalName}. Registered in England and Wales{company.companyNumber ? `, company number ${company.companyNumber}` : ''}.
