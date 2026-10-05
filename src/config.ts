@@ -5,7 +5,7 @@ export const company = {
   name: 'DnA Engineering', // brand styling, as in the logo
   legalName: 'DNA Engineering Ltd',
   companyNumber: '17159472',
-  registeredOffice: '28 City Road, London, EC1V 2NX, United Kingdom',
+  registeredOffice: '128 City Road, London, EC1V 2NX, United Kingdom',
   location: 'Telford, Shropshire',
   // TODO(Dan): confirm the phone number to publish.
   phone: '',
