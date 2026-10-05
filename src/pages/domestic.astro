@@ -1,10 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import { company } from '../config';
-import { domestic } from '../data';
-// TODO(Dan): confirm each of the domestic services listed in src/data.ts is something you offer.
+import { domestic, domesticControl } from '../data';
+
+const groups = [
+  { heading: 'What we control', items: domestic },
+  { heading: 'How you control it', intro: 'The same engineering as a commercial BMS front end, built for a home.', items: domesticControl },
+];
 ---
-<Base title="Home automation" description={`Home automation for larger homes from ${company.name}: lighting, heating, security, networking and blinds on one system, with every login handed over.`}>
+<Base title="Home automation" description={`Home automation for larger homes from ${company.name}: lighting, heating, security, AV and more on one system, with dashboards, remote access and geofencing. Built on Home Assistant, with every login handed over.`}>
   <section class="section page-head">
     <div class="wrap">
       <p class="eyebrow">Domestic · Home automation</p>
@@ -13,26 +17,31 @@ import { domestic } from '../data';
     </div>
   </section>
 
-  <section class="section domestic">
-    <div class="wrap">
-      <div class="dom-grid">
-        {domestic.map((d) => (
-          <div class="dom-cell">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={d.icon} /></svg>
-            <h2>{d.title}</h2>
-            <p>{d.summary}</p>
-          </div>
-        ))}
+  {groups.map((g) => (
+    <section class="section domestic">
+      <div class="wrap">
+        <h2 class="group-head">{g.heading}</h2>
+        {g.intro && <p class="group-intro">{g.intro}</p>}
+        <div class={`dom-grid ${g.items.length === 4 ? 'dom-grid--4' : ''}`}>
+          {g.items.map((d) => (
+            <div class="dom-cell">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={d.icon} /></svg>
+              <h3>{d.title}</h3>
+              <p>{d.summary}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
   <section class="section section--white">
     <div class="wrap prose">
       <h2>Your home. Your system. Your keys.</h2>
       <p>
-        The same promise as our commercial work. When the job is finished you get the admin logins, the
-        programming files and the documentation, so you're never stuck with one installer.
+        The same promise as our commercial work. Your system runs on open platforms like Home Assistant,
+        not a closed box only one installer can open. When the job is finished you get the admin logins,
+        the configuration and the documentation, so you're never stuck with one installer.
       </p>
     </div>
   </section>
@@ -51,11 +60,19 @@ import { domestic } from '../data';
 <style>
   .page-head { padding-bottom: 32px; }
   .page-head h1 { max-width: 16ch; }
-  .domestic { padding-top: 32px; }
+  .domestic { padding-top: 32px; padding-bottom: 32px; }
+  .domestic + .section--white { margin-top: 64px; }
+  .group-head { font-size: clamp(1.5rem, 2.6vw, 1.875rem); margin-bottom: 8px; }
+  .group-intro { margin: 0 0 4px; color: var(--text-soft); }
+  .group-head + .dom-grid, .group-intro + .dom-grid { margin-top: 24px; }
   .dom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  /* Four items: 1 column on phones, 2x2 on mid widths, 4 across on wide screens (never 3 + 1) */
+  .dom-grid--4 { grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .dom-grid--4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .dom-grid--4 { grid-template-columns: repeat(4, 1fr); } }
   .dom-cell { background: var(--dom-panel); border: 1px solid var(--dom-line); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; gap: 14px; }
   .dom-cell svg { color: var(--dom); }
-  .dom-cell h2 { margin: 0; font-size: 1.25rem; }
+  .dom-cell h3 { margin: 0; font-size: 1.25rem; }
   .dom-cell p { margin: 0; font-size: 0.9375rem; color: var(--text-soft); }
   .closing { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
   .closing h2 { margin-bottom: 8px; }

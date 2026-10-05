@@ -116,7 +116,7 @@ export const steps = [
   { title: 'Maintain', summary: 'Planned maintenance, remote monitoring and responsive call-outs.' },
 ];
 
-// Home page: domestic home automation. `icon` is SVG path data on a 24x24 grid.
+// Domestic: what we control. `icon` is SVG path data on a 24x24 grid.
 export const domestic = [
   {
     title: 'Lighting control',
@@ -135,12 +135,41 @@ export const domestic = [
   },
   {
     title: 'Whole-home networking',
-    summary: 'Enterprise-grade Wi-Fi and cabling, so every system has a solid backbone.',
+    summary: 'Wired networking and Wi-Fi throughout the house, so every system has a reliable connection.',
     icon: 'M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0M12 19.5h.01',
   },
   {
     title: 'Blinds & shading',
     summary: 'Motorised blinds and curtains tied into scenes, time of day and sunlight.',
     icon: 'M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM3 8h18M3 13h18M3 18h18',
+  },
+  {
+    title: 'Cinema & multi-room audio',
+    summary: 'Home cinema rooms and audio around the house, on the same system as everything else.',
+    icon: 'M4 5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM8 21h8',
+  },
+];
+
+// Domestic: how you control it. The BMS skills (front end, remote access, integration) applied at home.
+export const domesticControl = [
+  {
+    title: 'Dashboards & front end',
+    summary: 'Wall panels, tablets and phone dashboards showing the whole house on one screen.',
+    icon: 'M3 3h8v10H3zM13 3h8v6h-8zM13 11h8v10h-8zM3 15h8v6H3z',
+  },
+  {
+    title: 'Remote access',
+    summary: "Check and control heating, cameras, gates and alarms from anywhere when you're not home.",
+    icon: 'M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM11 18h2',
+  },
+  {
+    title: 'Geofencing & automations',
+    summary: 'The house reacts to you: heating on as you head home, lights off and alarm set when the last person leaves.',
+    icon: 'M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zM9.5 10a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0',
+  },
+  {
+    title: 'Home Assistant & APIs',
+    summary: 'Built on open platforms like Home Assistant, with APIs tying together devices from different brands.',
+    icon: 'M4 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M16 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M10 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M8 6h8M7 8l4 8M17 8l-4 8',
   },
 ];
