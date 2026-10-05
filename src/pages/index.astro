@@ -14,6 +14,17 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
   title={company.name}
   description="Your site. Your system. Your keys. BMS and HVAC controls for offices, schools, healthcare and industrial sites, with every login, file and licence handed over. Based in Telford, Shropshire."
 >
+  <!-- INHERITED SYSTEM BANNER -->
+  <div class="wrap">
+    <div class="legacy">
+      <div>
+        <h2>Inherited a system nobody can support? <span class="accent">We can.</span></h2>
+        <p>We'll work out what you've got, keep what still works and upgrade the rest at a pace that suits you.</p>
+      </div>
+      <a class="btn btn--light" href={cta.href}>Book a BMS survey</a>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero wrap">
     <p class="eyebrow">{company.name} · Building management systems</p>
@@ -122,14 +133,6 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
         ))}
       </ol>
 
-      <div class="legacy">
-        <div>
-          <h3>Inherited a system nobody can support?</h3>
-          <p>We'll survey it, tell you what's worth keeping and plan the upgrade in phases.</p>
-        </div>
-        <a class="btn btn--light" href={cta.href}>Book a BMS survey</a>
-      </div>
-
       <div class="sectors">
         <span>Sectors we work in</span>
         <ul class="tags">{sectors.map((s) => <li>{s}</li>)}</ul>
@@ -198,7 +201,7 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
 </Base>
 
 <style>
-  .hero { padding-top: 88px; padding-bottom: 48px; }
+  .hero { padding-top: 72px; padding-bottom: 48px; }
   .hero h1 { max-width: 1000px; }
   .hero h1 .accent { color: var(--com); white-space: nowrap; }
   .tagline { margin: 20px 0 0; font-family: var(--font-head); font-weight: 500; font-size: clamp(1.375rem, 2.6vw, 1.875rem); color: var(--text-soft); }
@@ -255,9 +258,10 @@ const pad = (n: number) => String(n + 1).padStart(2, '0');
   .steps li.first { border-top-color: var(--com); }
   .steps h4 { margin: 8px 0; font-size: 1.125rem; }
   .steps p { margin: 0; font-size: 0.9375rem; }
-  .legacy { margin-top: 56px; padding: 32px; border-radius: 14px; background: var(--com-deep); color: var(--text); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
-  .legacy h3 { margin: 0; font-size: 1.375rem; }
-  .section--white .legacy p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.85); font-size: 0.9375rem; }
+  .legacy { margin-top: 32px; padding: 28px 32px; border-radius: 14px; background: var(--com-deep); color: var(--white); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+  .legacy h2 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.25; }
+  .legacy h2 .accent { color: #d6f0b4; white-space: nowrap; }
+  .legacy p { margin: 8px 0 0; color: rgba(255, 255, 255, 0.88); font-size: 0.9375rem; }
   .sectors { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
   .sectors > span { font-size: 0.875rem; color: var(--text-faint); }
 
