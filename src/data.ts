@@ -129,11 +129,6 @@ export const domestic = [
     icon: 'M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z',
   },
   {
-    title: 'Cinema & multi-room audio',
-    summary: 'Dedicated cinema rooms and discreet audio throughout the house and garden.',
-    icon: 'M4 5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM8 21h8',
-  },
-  {
     title: 'Security & access',
     summary: 'CCTV, gates, door entry and alarms, all viewable from one app.',
     icon: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
